@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Optional;
 
 
-@CrossOrigin(origins = "http://localhost:8081")
 @RestController
 @RequestMapping("/Users")
 public class UsersController {
@@ -28,6 +27,10 @@ public class UsersController {
         return user.map(users -> new ResponseEntity<>(users, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    @GetMapping("/name/{name}")
+    public Optional<Users> getUserByName(@PathVariable String name) {
+        return userRepository.findByName(name);
+    }
     @PostMapping
     public Users createUser(@RequestBody Users newUser) {
         return userRepository.save(newUser);

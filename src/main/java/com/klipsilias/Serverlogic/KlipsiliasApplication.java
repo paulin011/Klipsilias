@@ -1,11 +1,20 @@
 package com.klipsilias.Serverlogic;
 
+import com.klipsilias.Serverlogic.FilesUpload.FileSystemStorageService;
+import com.klipsilias.Serverlogic.FilesUpload.StorageProperties;
+import com.klipsilias.Serverlogic.FilesUpload.StorageService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.boot.CommandLineRunner;
+
 import java.util.Optional;
+
 @SpringBootApplication
+
+@EnableConfigurationProperties(StorageProperties.class)
 
 class KlipsiliasApplication {
 
@@ -13,12 +22,18 @@ class KlipsiliasApplication {
         SpringApplication.run(KlipsiliasApplication.class, args);
     }
 
-
+    @Autowired
+    StorageService storageService;
 
     @Bean
 
-    public CommandLineRunner testApp(UserRepository repo) {
+    public CommandLineRunner testApp(UserRepository repo, FileSystemStorageService storageService) {
         return args -> {
+
+            storageService.deleteAll();
+            storageService.init();
+
+            repo.save(new Users("Kostas", "Lipsilias", "Klipsilias", "password"));
             repo.save(new Users("James", "Bond", "Bond123", "password"));
 
             Iterable<Users> allUsers = repo.findAll();
