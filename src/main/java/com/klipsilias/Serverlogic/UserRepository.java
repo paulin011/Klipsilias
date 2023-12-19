@@ -1,5 +1,5 @@
 package com.klipsilias.Serverlogic;
-
+import com.klipsilias.Serverlogic.KlipsiliasWebFacade;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

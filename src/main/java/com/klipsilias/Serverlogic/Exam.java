@@ -1,5 +1,5 @@
 package com.klipsilias.Serverlogic;
-
+import com.klipsilias.Serverlogic.KlipsiliasWebFacade;
 class Exam {
     private Integer id;
     private String name;

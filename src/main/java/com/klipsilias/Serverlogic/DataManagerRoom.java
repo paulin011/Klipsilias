@@ -1,5 +1,5 @@
 package com.klipsilias.Serverlogic;
-
+import com.klipsilias.Serverlogic.KlipsiliasWebFacade;
 interface DataManagerRoom extends DataManager {
 
          String getLocation();

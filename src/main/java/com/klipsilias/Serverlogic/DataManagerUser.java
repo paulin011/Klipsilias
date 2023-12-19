@@ -1,5 +1,5 @@
 package com.klipsilias.Serverlogic;
-
+import com.klipsilias.Serverlogic.KlipsiliasWebFacade;
 interface DataManagerUser extends DataManager {
     void setUsername(String username);
     public String getName();

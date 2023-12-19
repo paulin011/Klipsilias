@@ -2,36 +2,54 @@ package com.klipsilias.Serverlogic;
 
 //Diese Klasse wurde nun zu einer richtigen Facade umgebaut.
 
-/*
+
+import com.klipsilias.Database.DoubleData;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
+import org.testng.annotations.Test;
+
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.boot.CommandLineRunner;
+import java.util.Optional;
+@SpringBootApplication
+
 public class KlipsiliasWebFacade extends Observable implements ServerlogicFacade {
     public static void main(String[] args) throws IOException {
-        Protocol protocol = new Protocol();
-        KlipsiliasWebFacade toll = new KlipsiliasWebFacade();
-        toll.addObserver(protocol);
-        SecurityData.getInstance();
-        new Grade(1.2, "felstner");
-        new Grade(1.2, "felstner");
-        new Grade(1.3, "pdopatka");
-        SecurityData.add("pdopatka", "deinemuddaisttoll69");
-        SecurityData.add("felstner", "123456789");
-        SecurityData.add("wwalther", "hahahaihai");
-        SecurityData.login("wwalther", "hahahaihai");
-        Student frank = new Student("elstner", "frank", "felstner", "s1884z105h", true);
-        Lecturer thomas = new Lecturer("thomas", "gottschalk", "tgottschalk", "sjkvuifufi");
-        Administration jonathan = new Administration("Jonathan", "Tah", "jtah", "t7guhwoph");
-        jonathan.viewUser(frank);
-        frank.getUserGradeList();
-        toll.log("protokoll.txt");
-        ITSupport harald = new ITSupport("heinz", "harald", "hharald", "135623");
-        harald.viewProtocol();
+//        Protocol protocol = new Protocol();
+//        KlipsiliasWebFacade toll = new KlipsiliasWebFacade();
+//        toll.addObserver(protocol);
+//        //SecurityData.getInstance();
+//        new Grade(1.2, "felstner");
+//        new Grade(1.2, "felstner");
+//        new Grade(1.3, "pdopatka");
+//        //SecurityData.add("pdopatka", "deinemuddaisttoll69");
+//        //SecurityData.add("felstner", "123456789");
+//        //SecurityData.add("wwalther", "hahahaihai");
+//        //SecurityData.login("wwalther", "hahahaihai");
+//        Student frank = new Student("elstner", "frank", "felstner", "s1884z105h", true);
+//        Lecturer thomas = new Lecturer("thomas", "gottschalk", "tgottschalk", "sjkvuifufi");
+//        Administration jonathan = new Administration("Jonathan", "Tah", "jtah", "t7guhwoph");
+//        jonathan.viewUsers(frank);
+//        frank.getUsersGradeList();
+//        toll.log("protokoll.txt");
+//        ITSupport harald = new ITSupport("heinz", "harald", "hharald", "135623");
+//        harald.viewProtocol();
+        SpringApplication.run(KlipsiliasWebFacade.class, args);
     }
+
 
     //static int i = 0;
     //private static final Logger logger = Logger.getLogger("id" + i);
     Protocol observer = new Protocol();
     static Grade grade;
     Event event;
-    User user;
+    Users user;
     Student student;
     ITSupport itSupport;
 
@@ -41,69 +59,70 @@ public class KlipsiliasWebFacade extends Observable implements ServerlogicFacade
     private static KlipsiliasWebFacade instancePool;
     DataManager dataManager = new DataManager() {
         @Override
-        public String getId() {
+        public Integer getId() {
             return dataManager.getId();
         }
 
         @Override
-        public void setId(String id) {
+        public void setId(Integer id) {
             dataManager.setId(id);
-            log(dataManager.getId());
+            log(String.valueOf(dataManager.getId()));
         }
     };
-
-    DataManagerUser dataManagerUser = new DataManagerUser() {
+    /*
+    DataManagerUsers dataManagerUsers = new DataManagerUsers() {
         @Override
-        public void setUsername(String username) {
-            dataManagerUser.setUsername(username);
+        public void setUsersname(String username) {
+            dataManagerUsers.setUsersname(username);
             log(username);
         }
 
         @Override
         public String getName() {
-            return dataManagerUser.getName();
+            return dataManagerUsers.getName();
         }
 
         @Override
         public void setName(String name) {
-            dataManagerUser.setName(name);
-            log(dataManagerUser.getName());
+            dataManagerUsers.setName(name);
+            log(dataManagerUsers.getName());
         }
 
         @Override
         public String getVorname() {
-            return dataManagerUser.getVorname();
+            return dataManagerUsers.getVorname();
         }
 
         @Override
         public void setVorname(String vorname) {
-            dataManagerUser.setVorname(vorname);
-            log(dataManagerUser.getVorname());
+            dataManagerUsers.setVorname(vorname);
+            log(dataManagerUsers.getVorname());
         }
 
         @Override
         public void setId(String id) {
-            dataManagerUser.setId(id);
-            log(dataManagerUser.getId());
+            dataManagerUsers.setId(id);
+            log(dataManagerUsers.getId());
         }
 
         @Override
         public int getAccessLevel() {
-            return dataManagerUser.getAccessLevel();
+            return dataManagerUsers.getAccessLevel();
 
         }
 
         @Override
-        public boolean viewUser(User dummy) {
+        public boolean viewUsers(Users dummy) {
             log(dummy.toString());
-            return dataManagerUser.viewUser(dummy);
+            return dataManagerUsers.viewUsers(dummy);
         }
 
         @Override
         public String getId() {
-            return dataManagerUser.getId();
+            return dataManagerUsers.getId();
         }
     };
+    */
     DataManagerRoom dataManagerRoom = new DataManagerRoom() {
         @Override
         public String getLocation() {
@@ -124,14 +143,14 @@ public class KlipsiliasWebFacade extends Observable implements ServerlogicFacade
         }
 
         @Override
-        public String getId() {
+        public Integer getId() {
             return dataManagerRoom.getId();
         }
 
         @Override
-        public void setId(String id) {
+        public void setId(Integer id) {
             dataManager.setId(id);
-            log(dataManagerRoom.getId());
+            log(String.valueOf(dataManagerRoom.getId()));
         }
     };
     DataManagerGrade dataManagerGrade = new DataManagerGrade() {
@@ -147,14 +166,14 @@ public class KlipsiliasWebFacade extends Observable implements ServerlogicFacade
         }
 
         @Override
-        public String getId() {
+        public Integer getId() {
             return dataManagerGrade.getId();
         }
 
         @Override
-        public void setId(String id) {
+        public void setId(Integer id) {
             dataManagerGrade.setId(id);
-            log(dataManagerGrade.getId());
+            log(String.valueOf(dataManagerGrade.getId()));
         }
     };
     DataManagerEvent dataManagerEvent = new DataManagerEvent() {
@@ -174,24 +193,24 @@ public class KlipsiliasWebFacade extends Observable implements ServerlogicFacade
         }
 
         @Override
-        public ArrayList<User> getList() {
+        public ArrayList<Users> getList() {
             return dataManagerEvent.getList();
         }
 
         @Override
-        public void setTeilnehmer(ArrayList<User> teilnehmer) {
+        public void setTeilnehmer(ArrayList<Users> teilnehmer) {
             dataManagerEvent.setTeilnehmer(teilnehmer);
             log(dataManagerEvent.getList().toString());
         }
 
         @Override
-        public void addTeilnehmer(User user) {
+        public void addTeilnehmer(Users user) {
             log(user.toString());
             dataManagerEvent.addTeilnehmer(user);
         }
 
         @Override
-        public void deleteTeilnehmer(User user) {
+        public void deleteTeilnehmer(Users user) {
             log(user.toString());
             dataManagerEvent.deleteTeilnehmer(user);
         }
@@ -203,20 +222,20 @@ public class KlipsiliasWebFacade extends Observable implements ServerlogicFacade
         }
 
         @Override
-        public String getId() {
+        public Integer getId() {
             return dataManagerEvent.getId();
         }
 
         @Override
-        public void setId(String id) {
+        public void setId(Integer id) {
             dataManagerEvent.setId(id);
-            log(dataManagerEvent.getId());
+            log(String.valueOf(dataManagerEvent.getId()));
         }
     };
     DataManagerStudent dataManagerStudent = new DataManagerStudent() {
         @Override
-        public void getUserGradeList() {
-            dataManagerStudent.getUserGradeList();
+        public void getUsersGradeList() {
+            dataManagerStudent.getUsersGradeList();
         }
 
         @Override
@@ -234,7 +253,7 @@ public class KlipsiliasWebFacade extends Observable implements ServerlogicFacade
     private String message;
 
 
-    private ArrayList<Observer> observers = new ArrayList<>();
+    private ArrayList<Observer> observers = new ArrayList<Observer>();
 
     public void addObserver(Observer observer) {
         observers.add(observer);
@@ -247,7 +266,7 @@ public class KlipsiliasWebFacade extends Observable implements ServerlogicFacade
 
     @Override
     public void notifyObservers(Object arg) {
-        if (Objects.nonNull(arg)) {
+        if (arg != null) {
             for (Observer observer : observers) {
                 observer.update(this, arg);
             }
@@ -265,14 +284,20 @@ public class KlipsiliasWebFacade extends Observable implements ServerlogicFacade
         return grade.getList();
     }
 
-    public void viewProtocol() throws IOException {
+    public void viewProtocol() throws IOException, IOException {
         itSupport.viewProtocol();
+    }
+
+    @Override
+    public boolean viewUsers(Users dummy) {
+        return user.viewUsers(dummy);
     }
 
     public void update(Object o, Object args) {
         observer.update((Observable) o, args);
     }
 
+    /*
     public static boolean login(String username, String password) {
         return SecurityData.login(username, password);
     }
@@ -285,17 +310,14 @@ public class KlipsiliasWebFacade extends Observable implements ServerlogicFacade
         SecurityData.add(username, password);
     }
 
-    public boolean viewUser(User dummy) {
-        return user.viewUser(dummy);
-    }
-
+     */
     public void setAccessLevel(int i) {
         log(String.valueOf(i));
         user.setAccessLevel(i);
     }
 
-    public static ArrayList<User> getAllUserList(){
-        return User.getList();
+    public static ArrayList<Users> getAllUsersList(){
+        return Users.getList();
     }
 
     public ArrayList<Room> getRoomList(){
@@ -306,6 +328,17 @@ public class KlipsiliasWebFacade extends Observable implements ServerlogicFacade
         log(String.valueOf(note) + name);
         examOfficeEmployee.makeGrade(note, name);
     }
-}
+//    @Bean
 
-*/
+//    public CommandLineRunner testApp(UserRepository repo) {
+//        return args -> {
+//            repo.save(new Users("James", "Bond", "Bond123", "password"));
+//
+//            Iterable<Users> allUsers = repo.findAll();
+//            System.out.println("All students in DB: " + allUsers);
+//
+//            Optional<Users> U = repo.findById(1);
+//            System.out.println(U.toString());
+//        };
+//    }
+}

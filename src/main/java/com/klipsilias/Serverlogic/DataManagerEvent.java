@@ -1,5 +1,5 @@
 package com.klipsilias.Serverlogic;
-
+import com.klipsilias.Serverlogic.KlipsiliasWebFacade;
 import java.util.ArrayList;
 
 interface DataManagerEvent extends DataManager {

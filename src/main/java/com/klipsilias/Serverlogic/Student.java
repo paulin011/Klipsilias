@@ -1,5 +1,5 @@
 package com.klipsilias.Serverlogic;
-
+import com.klipsilias.Serverlogic.KlipsiliasWebFacade;
 import com.klipsilias.Database.DoubleData;
 
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ class Student extends Users implements DataManagerStudent { //Für Aufgabe 5 Bla
     }
     /*@requires Grade.getGradeList() != 0
     * @ensures Output of all Grades of the User */
-    public void getUserGradeList(){//Aufgabe 5 Blatt 5 2tes funcionalrequirement ermittelt
+    public void getUsersGradeList(){//Aufgabe 5 Blatt 5 2tes funcionalrequirement ermittelt
         assert Grade.getList() != null;
         ArrayList<DoubleData> userGradelist = new ArrayList<DoubleData>(); //liste die ausgegeben werden soll
         ArrayList<DoubleData> listzwischenspeicher = Grade.getList(); //hilfliste in der alle Grades sind

@@ -1,5 +1,5 @@
 package com.klipsilias.Serverlogic;
-
+import com.klipsilias.Serverlogic.KlipsiliasWebFacade;
 import java.util.ArrayList;
 
 class Room implements DataManager, DataManagerRoom {
