@@ -202,4 +202,25 @@ class Tests {
         event.addTeilnehmer(user);
         assertFalse(event.getList().contains(user));
     }
+
+    //viewGroupTeilnehmer für Blatt 10 Aufgabe 3
+    @Mock
+    ArrayList<Users> listeRight;
+    ArrayList<Users> listeWrong;
+    Group tester;
+    @Test
+    public void testTeilnehmerListWithFalseContent(){
+        for(int i = 0; i<listeRight.size(); i++){
+            tester.addGroupteilnehmer(listeRight.get(i));
+        }
+        assertNotEquals(listeRight, viewGroupTeilnehmer);
+    }
+
+    @Test
+    public void testTeilnehmerListRightContent(){
+        for(int i = 0; i<listeRight.size(); i++){
+            tester.addGroupteilnehmer(listeRight.get(i));
+        }
+        assertEquals(listeRight, viewGroupTeilnehmer);
+    }
 }
