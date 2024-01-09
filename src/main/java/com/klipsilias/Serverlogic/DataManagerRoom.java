@@ -6,5 +6,5 @@ interface DataManagerRoom extends DataManager {
 
          void setLocation(String location);
 
-         void makeReservation(String day, int time);
+         boolean makeReservation(String day, int time);
 }

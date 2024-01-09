@@ -1,6 +1,5 @@
-package com.klipsilias.Serverlogic.FilesUpload;
+package com.klipsilias.Serverlogic;
 
-import com.klipsilias.Serverlogic.ResponseMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;

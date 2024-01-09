@@ -1,4 +1,4 @@
-package com.klipsilias.Serverlogic.FilesUpload;
+package com.klipsilias.Serverlogic;
 
 public class StorageFileNotFoundException extends StorageException {
 

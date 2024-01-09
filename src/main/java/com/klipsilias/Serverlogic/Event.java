@@ -7,7 +7,7 @@ class Event implements DataManager, DataManagerEvent {
   private Integer id;
   private Room veranstaltungsort;
   private String zeitpunkt;
-  private ArrayList<Users> teilnehmer = new ArrayList<>();
+  private static ArrayList<Users> teilnehmer = new ArrayList<>();
 
   public Event(Integer Id, Room veranstaltungsort, String zeitpunkt, ArrayList<Users> teilnehmer) {
     this.id = Id;
@@ -44,8 +44,8 @@ class Event implements DataManager, DataManagerEvent {
     this.teilnehmer = teilnehmer;
   }
 
-  public void addTeilnehmer(Users users){
-    teilnehmer.add(users);
+  public void addTeilnehmer(Student users){
+    if(users.immatriculated) teilnehmer.add(users);
   }
 
   public void deleteTeilnehmer(Users users){

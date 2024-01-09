@@ -1,7 +1,7 @@
 package com.klipsilias.demo1;
 
-import com.klipsilias.Serverlogic.FilesUpload.FileSystemStorageService;
-import com.klipsilias.Serverlogic.FilesUpload.StorageService;
+import com.klipsilias.Serverlogic.FileSystemStorageService;
+import com.klipsilias.Serverlogic.StorageService;
 import com.klipsilias.Serverlogic.UserRepository;
 import com.klipsilias.Serverlogic.Users;
 import org.springframework.beans.factory.annotation.Autowired;

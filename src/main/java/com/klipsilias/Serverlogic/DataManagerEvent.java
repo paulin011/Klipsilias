@@ -14,7 +14,7 @@ interface DataManagerEvent extends DataManager {
 
          void setTeilnehmer(ArrayList<Users> teilnehmer);
 
-         void addTeilnehmer(Users users);
+         void addTeilnehmer(Student users);
 
          void deleteTeilnehmer(Users users);
 

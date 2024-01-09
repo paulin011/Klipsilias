@@ -3,9 +3,10 @@ package com.klipsilias.Serverlogic;
 import com.klipsilias.Database.DoubleData;
 
 import java.util.ArrayList;
+import java.util.List;
 
 class Student extends Users implements DataManagerStudent { //Für Aufgabe 5 Blatt 5 entstanden
-    private boolean immatriculated;
+    boolean immatriculated;
     //@invariant name != 0 && firstname != 0 && username != 0 && userid != 0 && immatriculated != 0
     public Student(String name, String firstname, String username, String password, boolean immatriculated) {
         super(name, firstname, username, password);
@@ -14,8 +15,7 @@ class Student extends Users implements DataManagerStudent { //Für Aufgabe 5 Bla
     }
     /*@requires Grade.getGradeList() != 0
     * @ensures Output of all Grades of the User */
-    public void getUserGradeList(){//Aufgabe 5 Blatt 5 2tes funcionalrequirement ermittelt
-        assert Grade.getList() != null;
+    public List<DoubleData> getUserGradeList(){//Aufgabe 5 Blatt 5 2tes funcionalrequirement ermittelt
         ArrayList<DoubleData> userGradelist = new ArrayList<DoubleData>(); //liste die ausgegeben werden soll
         ArrayList<DoubleData> listzwischenspeicher = Grade.getList(); //hilfliste in der alle Grades sind
         for(int i = 0; i < listzwischenspeicher.size(); i++){ // Iteration durch liste
@@ -24,12 +24,12 @@ class Student extends Users implements DataManagerStudent { //Für Aufgabe 5 Bla
         }
         }
         System.out.println(userGradelist.toString()); // Ausgabe Ergebnis Liste
+        return userGradelist;
     }
     /*@requires immatriculated == true
     * @ensures event.getTeilnhemer().contains(this)*/
     public void registerEvent(Event event) {
-        assert immatriculated;
-        event.addTeilnehmer(this);
+        if(immatriculated) event.addTeilnehmer(this);
     }
     /*@requires event.getTeilnhemer().contains(this)
      * @ensures !event.getTeilnhemer().contains(this)*/

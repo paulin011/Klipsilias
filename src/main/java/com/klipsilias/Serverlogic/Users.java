@@ -94,11 +94,13 @@ public class Users {
     }
 
     public boolean viewUser(Users dummy){//(Für Aufgabe 5 Blatt5) Methode um Daten eines anderen Nutzers anzusehen
-        if(getAccessLevel() == 1 || getAccessLevel() == 4){ //Abfrage ob Zugriffsrecht auf Daten vorliegt
+        if(getAccessLevel() == 1 || getAccessLevel() == 2){ //Abfrage ob Zugriffsrecht auf Daten vorliegt
             throw new IllegalCallerException("access denied");  // Fehler falls falscher Zugriffsrecht vorliegt
         }
         else{
-            System.out.println(dummy.toString()); // Ausgabe falls Zugriffsrecht vorliegt
+            if(dummy != null) {
+                System.out.println(dummy.toString()); // Ausgabe falls Zugriffsrecht vorliegt
+            }
             return true;
         }
     }

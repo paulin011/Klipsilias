@@ -1,9 +1,11 @@
 package com.klipsilias.Serverlogic;
 
-import com.klipsilias.Serverlogic.Event;
+import com.klipsilias.Database.DoubleData;
+
+import java.util.List;
 
 interface DataManagerStudent {
-    void getUserGradeList();
+    List<DoubleData> getUserGradeList();
     void registerEvent(Event event);
     void deregisterEvent(Event event);
 

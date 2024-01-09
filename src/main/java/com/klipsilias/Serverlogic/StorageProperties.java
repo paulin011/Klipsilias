@@ -1,4 +1,4 @@
-package com.klipsilias.Serverlogic.FilesUpload;
+package com.klipsilias.Serverlogic;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

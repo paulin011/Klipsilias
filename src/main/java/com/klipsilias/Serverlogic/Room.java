@@ -34,7 +34,7 @@ class Room implements DataManager, DataManagerRoom {
     public void setLocation(String location) {
         this.location = location;
     }
-    public void makeReservation(String day, int time){
+    public boolean makeReservation(String day, int time){
         int dayindice = 0;
         int timeindice = time - 8 - 1;  /*Umwandeln der Stunde in Indize für die Liste (ausgehend davon, dass
                                         der Tag um 8 beginnt*/
@@ -47,15 +47,17 @@ class Room implements DataManager, DataManagerRoom {
             default -> throw new IllegalArgumentException("Invalid day of the week: " + day); /*falls falsche Eingabe
                                                                                               Fehlermeldung*/
         };
-        if(timeindice < 0 || timeindice > 11){ //check ob ein gegebener Wert passt
+        if(timeindice < 0 || timeindice > 10){ //check ob ein gegebener Wert passt
             throw new IllegalArgumentException("Invalid time: " + time);
         }
         if(isNotAvailable[dayindice][timeindice]){ //Prüfung ob Raum bereits vergeben
-            System.out.println("Already taken"); //falls ja text mit ist bereits belegt
+            System.out.println("Already taken");
+            return false;                           //falls ja text mit ist bereits belegt
         }
         else {
             isNotAvailable[dayindice][timeindice] = true; //falls nein ändere boolean zu reserviert
         }
+        return isNotAvailable[dayindice][timeindice];
     }
 
     public static ArrayList<Room> getRoomList() {

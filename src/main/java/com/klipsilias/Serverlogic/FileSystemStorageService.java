@@ -1,4 +1,4 @@
-package com.klipsilias.Serverlogic.FilesUpload;
+package com.klipsilias.Serverlogic;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;

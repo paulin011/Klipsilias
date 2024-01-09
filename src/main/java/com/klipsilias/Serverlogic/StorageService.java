@@ -1,4 +1,4 @@
-package com.klipsilias.Serverlogic.FilesUpload;
+package com.klipsilias.Serverlogic;
 
 import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
