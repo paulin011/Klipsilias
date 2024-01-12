@@ -18,7 +18,7 @@ import static org.mockito.Mockito.*;
 class Tests {
     //test makeReservation
     @Mock
-    private Room reservationMock = new Room(123131232, "nebenan");
+    private Room reservationMock = new Room();
 
     @Test
     public void testMakeReservationWithValidInput() {
