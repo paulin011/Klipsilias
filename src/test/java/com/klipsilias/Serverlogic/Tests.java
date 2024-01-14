@@ -207,7 +207,7 @@ class Tests {
     @Mock
     ArrayList<Users> listeRight;
     ArrayList<Users> listeWrong;
-    Group tester;
+    Groupy tester;
     @Test
     public void testTeilnehmerListWithFalseContent(){
         for(int i = 0; i<listeRight.size(); i++){

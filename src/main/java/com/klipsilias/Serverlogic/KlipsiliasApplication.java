@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 @SpringBootApplication
@@ -21,6 +22,10 @@ class KlipsiliasApplication {
 
     @Autowired
     StorageService storageService;
+    @Autowired
+    UserRepository repo;
+    @Autowired
+    GroupRepository groupRepository;
 
     @Bean
 
@@ -29,15 +34,30 @@ class KlipsiliasApplication {
 
             storageService.deleteAll();
             storageService.init();
+           Users user1 = new Users("Kostas", "Lipsilias", "Klipsilias", "password");
+           Users user2 = new Users("James", "Bond", "Bond123", "password");
 
-            repo.save(new Users("Kostas", "Lipsilias", "Klipsilias", "password"));
-            repo.save(new Users("James", "Bond", "Bond123", "password"));
+
+            repo.save(user1);
+            repo.save(user2);
+
+
+            ArrayList<Users> users = new ArrayList<>();
+            users.add(user1);
+            users.add(user2);
+            Groupy groupy1 = new Groupy("Group1",users);
+
+            groupRepository.save(groupy1);
 
             Iterable<Users> allUsers = repo.findAll();
             System.out.println("All students in DB: " + allUsers);
 
             Optional<Users> U = repo.findById(1);
             System.out.println(U.toString());
+
+            groupRepository.findByName("Group1").ifPresent(groupy -> {
+                System.out.println("Group1: " + groupy.getUsers());
+            });
         };
     }
 }

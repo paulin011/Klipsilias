@@ -30,7 +30,6 @@ public class Users {
     @Column(name = "access_level")
     private int accessLevel;
 
-    private static ArrayList<Users> usersList = new ArrayList<Users>();
 
    //Create a constructor
 
@@ -43,6 +42,7 @@ public class Users {
     }
     public Users() {
     }
+
 
     void setPassword(String password) {
         this.password = password;
@@ -79,9 +79,11 @@ public class Users {
         return accessLevel;
     }
 
-    public static ArrayList<Users> getList() {
-        return usersList;
+    public void setAccessLevel(int i) {
+        this.accessLevel = i;
     }
+
+
 
     @Override
     public String toString() {
@@ -105,9 +107,6 @@ public class Users {
         }
     }
 
-    protected void setAccessLevel(int i) {
-        accessLevel = i;
-    }
 
     //Auto generated
     public void setId(Integer id) {
