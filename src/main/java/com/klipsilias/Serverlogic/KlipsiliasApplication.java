@@ -26,7 +26,7 @@ class KlipsiliasApplication {
     UserRepository repo;
     @Autowired
     GroupRepository groupRepository;
-
+    /*
     @Bean
 
     public CommandLineRunner testApp(UserRepository repo, FileSystemStorageService storageService) {
@@ -59,6 +59,6 @@ class KlipsiliasApplication {
                 System.out.println("Group1: " + groupy.getUsers());
             });
         };
-    }
+    }*/
 }
 

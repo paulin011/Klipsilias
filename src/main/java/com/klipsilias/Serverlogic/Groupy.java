@@ -2,6 +2,7 @@ package com.klipsilias.Serverlogic;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -16,18 +17,15 @@ public class Groupy {
     String name;
 
     @OneToMany(fetch = FetchType.EAGER)
-    private List<Users> users;
+    private ArrayList<Users> users;
 
     public Groupy(String name) {
         this.name = name;
+        this.users = new ArrayList<>();
     }
 
     public Groupy() {
 
-    }
-    public Groupy(String name, List<Users> users) {
-        this.name = name;
-        this.users = users;
     }
 
     public Integer getId() {
@@ -46,11 +44,11 @@ public class Groupy {
         this.name = name;
     }
 
-    public List<Users> getUsers() {
+    public ArrayList<Users> getUsers() {
         return users;
     }
 
-    public void setUsers(List<Users> users) {
+    public void setUsers(ArrayList<Users> users) {
         this.users = users;
     }
 

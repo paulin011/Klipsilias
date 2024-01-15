@@ -205,22 +205,37 @@ class Tests {
 
     //viewGroupTeilnehmer für Blatt 10 Aufgabe 3
     @Mock
-    ArrayList<Users> listeRight;
-    ArrayList<Users> listeWrong;
-    Groupy tester;
+    ArrayList<Users> listeRight = new ArrayList<>();
+    Groupy tester = new Groupy("kaffeekränzchen");
     @Test
     public void testTeilnehmerListWithFalseContent(){
-        for(int i = 0; i<listeRight.size(); i++){
-            tester.addGroupteilnehmer(listeRight.get(i));
-        }
-        assertNotEquals(listeRight, viewGroupTeilnehmer);
+        Users user1 = new Users("Kostas", "Lipsilias", "Klipsilias", "password");
+        Users user2 = new Users("James", "Bond", "Bond123", "password");
+        Users user3 = new Users("James", "Bond", "Bond123", "password");
+        listeRight.add(user1);
+        listeRight.add(user2);
+        listeRight.add(user3);
+        Users user4 = new Users("James", "Bond", "Bond123", "password");
+        Users user5 = new Users("James", "Bond", "Bond123", "password");
+        Users user6 = new Users("James", "Bond", "Bond123", "password");
+        tester.addUser(user4);
+        tester.addUser(user5);
+        tester.addUser(user6);
+
+        assertNotEquals(listeRight, tester.getUsers());
     }
 
     @Test
     public void testTeilnehmerListRightContent(){
+        Users user1 = new Users("Kostas", "Lipsilias", "Klipsilias", "password");
+        Users user2 = new Users("James", "Bond", "Bond123", "password");
+        Users user3 = new Users("James", "Bond", "Bond123", "password");
+        listeRight.add(user1);
+        listeRight.add(user2);
+        listeRight.add(user3);
         for(int i = 0; i<listeRight.size(); i++){
-            tester.addGroupteilnehmer(listeRight.get(i));
+            tester.addUser(listeRight.get(i));
         }
-        assertEquals(listeRight, viewGroupTeilnehmer);
+        assertEquals(listeRight, tester.getUsers());
     }
 }
