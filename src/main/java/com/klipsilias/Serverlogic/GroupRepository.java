@@ -7,8 +7,12 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends CrudRepository<Users, Integer> {
-    Optional<Users> findByName(String name);
 
-    Optional<Users> findByUsernameAndPassword(String username, String password);
+public interface GroupRepository extends CrudRepository<Groupy, Integer> {
+
+    //implement findbyname
+
+    Optional<Groupy> findByName(String name);
+
+
 }
