@@ -27,17 +27,16 @@ public class Room implements DataManager, DataManagerRoom {
        for (int i = 0; i <= 60; i++)
         isNotAvailable.add(false);
     }
-    /*
-    public Room(Integer Id, String location) {
-        this.id = Id;
-        this.location = location;
-        for(int i = 0; i < 5; i++){
-            for(int j = 0; j < 12; j++){
-                isNotAvailable[i][j] = false;
-            }
-        }
-    }
-    */
+//    public Room(Integer Id, String location) {
+//        this.id = Id;
+//        this.location = location;
+//        for(int i = 0; i < 5; i++){
+//            for(int j = 0; j < 12; j++){
+//                isNotAvailable[i][j] = false;
+//            }
+//        }
+//    }
+
 
 
     public Integer getId() {
@@ -106,8 +105,9 @@ public class Room implements DataManager, DataManagerRoom {
         }
         return isNotAvailable.get(timeindice);
     }
+    }
 
   //  public static ArrayList<Room> getRoomList() {
     //    return roomList;
    // }
-}
+

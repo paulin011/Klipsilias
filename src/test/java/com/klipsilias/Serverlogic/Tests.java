@@ -183,7 +183,7 @@ class Tests {
     @Test
     public void testRegisterEventImmatriculated() {
         Student user = new Student("Hans", "franz", "fhans", "sophia", true);
-        Room room = new Room(141144, "drüben");
+        Room room = new Room();
         ArrayList<Users> toll = new ArrayList<>();
         Event event = new Event(1231131321, room, "morgenfrüh", toll);
         event.addTeilnehmer(user);
@@ -196,19 +196,19 @@ class Tests {
     @Test
     public void testRegisterEventNotImmatriculated() {
         Student user = new Student("Hans", "franz", "fhans", "sophia", false);
-        Room room = new Room(141144, "drüben");
+        Room room = new Room();
         ArrayList<Users> toll = new ArrayList<>();
         Event event = new Event(1231131321, room, "morgenfrüh", toll);
         event.addTeilnehmer(user);
         assertFalse(event.getList().contains(user));
     }
 
-    //viewGroupTeilnehmer für Blatt 10 Aufgabe 3
+    //getUsers aus der Klasse Group für Blatt 10 Aufgabe 3
     @Mock
     ArrayList<Users> listeRight = new ArrayList<>();
     Groupy tester = new Groupy("kaffeekränzchen");
     @Test
-    public void testTeilnehmerListWithFalseContent(){
+    public void testUserListWithFalseContent(){
         Users user1 = new Users("Kostas", "Lipsilias", "Klipsilias", "password");
         Users user2 = new Users("James", "Bond", "Bond123", "password");
         Users user3 = new Users("James", "Bond", "Bond123", "password");
@@ -226,15 +226,15 @@ class Tests {
     }
 
     @Test
-    public void testTeilnehmerListRightContent(){
+    public void testUserListRightContent(){
         Users user1 = new Users("Kostas", "Lipsilias", "Klipsilias", "password");
         Users user2 = new Users("James", "Bond", "Bond123", "password");
         Users user3 = new Users("James", "Bond", "Bond123", "password");
         listeRight.add(user1);
         listeRight.add(user2);
         listeRight.add(user3);
-        for(int i = 0; i<listeRight.size(); i++){
-            tester.addUser(listeRight.get(i));
+        for (Users value : listeRight) {
+            tester.addUser(value);
         }
         assertEquals(listeRight, tester.getUsers());
     }
